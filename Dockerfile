@@ -13,6 +13,8 @@ RUN curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash \
     && . ~/.jabba/jabba.sh \
     && ln -s "/root/.jabba/jdk/${DEFAULT_JAVA}" /jdk \
 # NVM.
+    && apt update \
+    && apt install dirmngr --install-recommends \
     && curl -o /tmp/UnicodeData.txt --create-dirs http://unicode.org/Public/UNIDATA/UnicodeData.txt \
 	&& chmod 777 /tmp/UnicodeData.txt \
 	&& curl -o- https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
@@ -34,9 +36,7 @@ RUN curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash \
     && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
     && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
 # Git.
-    && echo "deb http://ftp.us.debian.org/debian testing main contrib non-free" >> /etc/apt/sources.list \
-    && apt update \
-    && apt install -y git \
+    && apt install -y git-core \
 # Subversion.
     && apt install -y subversion \
 # Make.
