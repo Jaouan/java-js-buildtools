@@ -33,10 +33,14 @@ RUN curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash \
     && ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
     && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
     && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
-# Make.
+# Git.
+    && echo "deb http://ftp.us.debian.org/debian testing main contrib non-free" >> /etc/apt/sources.list \
     && apt update \
+    && apt install -y git \
+# Subversion.
+    && apt install -y subversion \
+# Make.
     && apt install -y build-essential \
-# Git & SVN.
-    && apt install -y git-core subversion \
 # Some editors.
-    && apt install -y vim nano
+    && apt install -y vim nano \
+    && apt-get clean all
