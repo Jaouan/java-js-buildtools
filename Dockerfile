@@ -41,6 +41,6 @@ RUN curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash \
     && apt install -y subversion \
 # Make.
     && apt install -y build-essential \
-# Some editors.
-    && apt install -y vim nano \
+# Some tools.
+    && apt install -y vim nano procps \
     && apt-get clean all
